@@ -51,10 +51,12 @@ public class ServletTarea extends HttpServlet {
         try {
             String responsable = request.getParameter("cboResponsable");
             String plazo = request.getParameter("DtPlazo");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            java.util.Date
-            formato = sdf.parse(plazo);
-            java.sql.Date fecha = new java.sql.Date(formato.getDate());
+            SimpleDateFormat parseador = new SimpleDateFormat("dd/MM/yyyy");
+            Date fecha = (Date) parseador.parse(plazo);
+//            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//            java.util.Date
+//            formato = sdf.parse(plazo);
+//            java.sql.Date fecha = new java.sql.Date(formato.getDate());
             String descripcion = request.getParameter("txtDescripcion");
             int cumplimiento = 0;
             int id_usu_asig = Integer.parseInt(request.getParameter("cboUsuario"));

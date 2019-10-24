@@ -26,6 +26,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
+    <sql:setDataSource var="dataSource" driver="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@localhost:1521:XE" user="TASKTEST" password="admin"></sql:setDataSource>
+         <sql:query dataSource="${dataSource}" var="tipo">
+            SELECT id_proceso, nombre from proceso where usuario_id_usuario = ${id}
+        </sql:query> 
 	<div class="main">
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                     <div class="navbar-header">
@@ -38,20 +42,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="w3layouts_main_grid">
                         <div class="input-group" style="color: white">    
                         <table border="2" style="width: 271px;">
-        
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>NOMBRE</th>
                         <th>USUARIO</th>
                     </tr>           
-                </thead>
-                <c:forEach var="aux" items="${lista}">
+                </thead>            
+                <c:forEach var="aux" items="${tipo.rows}">
                     <tbody>
                         <tr>
-                            <td>${aux.getId_proceso()}</td>
-                            <td>${aux.getNombre()}</td>
-                            <td>${aux.getUsuario_id_usuario()}</td>
+                            <td>${aux.id_proceso}</td>
+                            <td>${aux.nombre}</td>
                         </tr>
                     </tbody>
                 </c:forEach>
